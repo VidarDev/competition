@@ -8,7 +8,7 @@ import '@/src/i18n'; // importer la configuration i18n
 import { useTranslation } from 'react-i18next';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { NameProvider } from '@/src/context/NameContext';
+import { UserProvider } from '@/src/context/UserContext';
 import { ThemeProvider } from '@/src/context/ThemeContext';
 import { LangProvider } from '@/src/context/LangContext';
 
@@ -34,7 +34,7 @@ export default function RootLayout() {
   }
 
   return (
-    <NameProvider>
+    <UserProvider>
       <ThemeProvider colorScheme={colorScheme}>
         <LangProvider>
           <Stack>
@@ -44,6 +44,6 @@ export default function RootLayout() {
           </Stack>
         </LangProvider>
       </ThemeProvider>
-    </NameProvider>
+    </UserProvider>
   );
 }
