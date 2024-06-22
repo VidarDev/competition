@@ -1,3 +1,4 @@
 export default {
-  'welcome-user': 'Bienvenue',
+  Welcome: 'Bienvenue',
+  Home: 'Accueil',
 };

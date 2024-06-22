@@ -38,7 +38,7 @@ export default function RootLayout() {
       <ThemeProvider colorScheme={colorScheme}>
         <LangProvider>
           <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             {/*<Stack.Screen name="(auth)" options={{ headerShown: false }} />*/}
             <Stack.Screen name="+not-found" />
           </Stack>

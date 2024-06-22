@@ -16,7 +16,7 @@ const HomeScreen = () => {
 
   return (
     <View style={[styles.container]}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('welcome-user')}</Text>
+      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('Welcome')}</Text>
 
       <Text>User: {user}</Text>
       <Text>Is logged in: {isLoggedIn ? 'Yes' : 'No'}</Text>
@@ -44,7 +44,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
   },
