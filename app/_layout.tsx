@@ -11,6 +11,8 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { UserProvider } from '@/src/context/UserContext';
 import { ThemeProvider } from '@/src/context/ThemeContext';
 import { LangProvider } from '@/src/context/LangContext';
+import modal from '@/app/modal';
+import { Platform } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,6 +41,13 @@ export default function RootLayout() {
         <LangProvider>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="profil" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="modal"
+              options={{
+                presentation: 'modal',
+              }}
+            />
             {/*<Stack.Screen name="(auth)" options={{ headerShown: false }} />*/}
             <Stack.Screen name="+not-found" />
           </Stack>

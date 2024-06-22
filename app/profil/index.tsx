@@ -1,0 +1,60 @@
+import React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Stack, router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
+const HomeScreen = () => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: 'Test',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.navigate({ pathname: '(tabs)/home' })}
+              style={{ marginLeft: 8 }}>
+              <View
+                style={{
+                  backgroundColor: '#fff',
+                  padding: 6,
+                  borderRadius: 10,
+                }}>
+                <Ionicons name="compass" size={32} color={'#2C2829'} />
+              </View>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <View style={[styles.container]}>
+        <TouchableOpacity
+          onPress={() => router.navigate({ pathname: 'profil/home' })}
+          style={{ marginLeft: 8 }}>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              padding: 6,
+              borderRadius: 10,
+            }}>
+            <Ionicons name="compass" size={32} color={'#2C2829'} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFEAD9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+export default HomeScreen;

@@ -11,7 +11,7 @@ import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
 import { Stack, router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function App() {
+const App = () => {
   const { t } = useTranslation();
 
   const ring1padding = useSharedValue(0);
@@ -66,7 +66,7 @@ export default function App() {
       </View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   page: {
@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
     borderRadius: 999,
   },
 });
+
+export default App;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Button } from 'react-native-paper';
 import { useUser } from '@/src/context/UserContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { useLang } from '@/src/context/LangContext';
@@ -22,21 +23,56 @@ const HomeScreen = () => {
       <Text>Is logged in: {isLoggedIn ? 'Yes' : 'No'}</Text>
       <Text>Theme: {theme}</Text>
       <Text>Lang: {lang}</Text>
-      <Button title="Edit User" onPress={() => router.navigate('edit')} />
-      <Button
-        title="English"
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#fff',
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
         onPress={() => {
           i18n.changeLanguage('en');
           setLang('en');
+        }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#fff',
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          borderRadius: 10,
+          marginTop: 20,
         }}
-      />
-      <Button
-        title="French"
         onPress={() => {
           i18n.changeLanguage('fr');
           setLang('fr');
+        }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#fff',
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          borderRadius: 10,
+          marginTop: 20,
         }}
-      />
+        onPress={() => router.navigate('modal')}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#fff',
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
+        onPress={() => router.navigate({ pathname: 'profil' })}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

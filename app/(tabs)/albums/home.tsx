@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { View, Button, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { useUser } from '@/src/context/UserContext';
-import { Stack, router, Tabs } from 'expo-router';
+import React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Stack, router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 
-const EditScreen = () => {
+const HomeScreen = () => {
   const { t } = useTranslation();
-
-  const { user, isLoggedIn, setUser, logOut } = useUser();
-  const [newUser, setNewUser] = useState(user);
 
   return (
     <>
@@ -17,7 +13,7 @@ const EditScreen = () => {
         options={{
           headerShown: true,
           headerTransparent: true,
-          // headerTitle: 'Test',
+          headerTitle: '',
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => router.back()}
@@ -28,15 +24,15 @@ const EditScreen = () => {
         }}
       />
       <View style={[styles.container]}>
-        <TextInput value={newUser} onChangeText={setNewUser} />
-        <TouchableOpacity
-          onPress={() => {
-            setUser(newUser);
-            router.back();
-          }}
-          style={{ marginLeft: 8, backgroundColor: '#fff', padding: 6, borderRadius: 10 }}>
-          <Ionicons name="compass" size={32} color={'#2C2829'} />
-        </TouchableOpacity>
+        <Text>{t('Welcome')}</Text>
+        <View style={[styles.container]}>
+          <TouchableOpacity
+            onPress={() => router.navigate({ pathname: 'profil' })}
+            style={{ marginLeft: 8, backgroundColor: '#fff', padding: 6, borderRadius: 10 }}>
+            <Ionicons name="compass" size={32} color={'#2C2829'} />
+            <Text>{t('Home')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -51,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditScreen;
+export default HomeScreen;

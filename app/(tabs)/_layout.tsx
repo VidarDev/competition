@@ -12,11 +12,11 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
+        tabBarShowLabel: true,
         tabBarActiveTintColor: '#FF6819',
         tabBarInactiveTintColor: '#2C2829',
         tabBarStyle: {
-          backgroundColor: '#FFEAD9',
+          backgroundColor: '#fff',
           borderTopWidth: 0,
           padding: 0,
         },
@@ -36,7 +36,7 @@ export default function TabsLayout() {
             <View
               style={{
                 position: 'absolute',
-                top: -64 / 2,
+                top: -64 / 2 - 10,
                 backgroundColor: '#FF6819',
                 paddingHorizontal: 12,
                 paddingVertical: 12,
@@ -44,10 +44,26 @@ export default function TabsLayout() {
                 alignItems: 'center',
                 flex: 1,
                 justifyContent: 'center',
+                borderWidth: 10,
+                borderColor: '#FFEAD9',
               }}>
               <Ionicons name="add-outline" size={40} color={'#fff'} />
             </View>
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="albums"
+        options={{
+          title: t('Albums'),
+          tabBarIcon: ({ color }) => <Ionicons name="compass" size={32} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="redirectprofil"
+        options={{
+          title: t('Profil'),
+          tabBarIcon: ({ color }) => <Ionicons name="compass" size={32} color={color} />,
         }}
       />
     </Tabs>
