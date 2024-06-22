@@ -9,10 +9,6 @@ export default function App() {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('welcome-user')}</Text>
-      <Button title="Change language to French" onPress={() => i18n.changeLanguage('fr')} />
-      <Button title="Change language to ENGLISH" onPress={() => i18n.changeLanguage('en')} />
-      <StatusBar style="auto" />
       <Link
         asChild
         style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}

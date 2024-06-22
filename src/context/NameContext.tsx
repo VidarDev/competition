@@ -6,16 +6,20 @@ interface NameContextProps {
   setName: (name: string) => void;
 }
 
+const NameDefault: string = 'test';
+
 const NameContext = createContext<NameContextProps | undefined>(undefined);
 
 export const NameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [name, setNameState] = useState<string>('');
+  const [name, setNameState] = useState<string>(NameDefault);
 
   useEffect(() => {
     const loadName = async () => {
       const storedName = await AsyncStorage.getItem('name');
       if (storedName) {
         setNameState(storedName);
+      } else {
+        setName(NameDefault);
       }
     };
     loadName();
@@ -24,7 +28,6 @@ export const NameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const setName = async (newName: string) => {
     setNameState(newName);
     await AsyncStorage.setItem('name', newName);
-    console.log(await AsyncStorage.getItem('name'));
   };
 
   return <NameContext.Provider value={{ name, setName }}>{children}</NameContext.Provider>;

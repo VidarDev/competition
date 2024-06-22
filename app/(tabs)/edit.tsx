@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { useName } from '@/src/context/NameContext';
+import { useTheme } from '@/src/context/ThemeContext';
 import { router } from 'expo-router';
 import { TextInput } from 'react-native-paper';
 

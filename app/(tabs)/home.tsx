@@ -1,15 +1,41 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useName } from '@/src/context/NameContext';
+import { useTheme } from '@/src/context/ThemeContext';
+import { useLang } from '@/src/context/LangContext';
 import { router } from 'expo-router';
+import i18n from '@/src/i18n';
+import { useTranslation } from 'react-i18next';
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
+
   const { name } = useName();
+  const { theme } = useTheme();
+  const { lang, setLang } = useLang();
 
   return (
     <View style={[styles.container]}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('welcome-user')}</Text>
+
       <Text>Name: {name}</Text>
+      <Text>Theme: {theme}</Text>
+      <Text>Lang: {lang}</Text>
       <Button title="Edit Name" onPress={() => router.navigate('edit')} />
+      <Button
+        title="English"
+        onPress={() => {
+          i18n.changeLanguage('en');
+          setLang('en');
+        }}
+      />
+      <Button
+        title="French"
+        onPress={() => {
+          i18n.changeLanguage('fr');
+          setLang('fr');
+        }}
+      />
     </View>
   );
 };
