@@ -40,8 +40,9 @@ export default function RootLayout() {
       <ThemeProvider colorScheme={colorScheme}>
         <LangProvider>
           <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="profil" options={{ headerShown: false }} />
+            <Stack.Screen name="(aux)" options={{ headerShown: false }} />
             <Stack.Screen
               name="modal"
               options={{

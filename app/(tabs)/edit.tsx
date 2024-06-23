@@ -21,8 +21,8 @@ const EditScreen = () => {
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => router.back()}
-              style={{ marginLeft: 8, backgroundColor: '#fff', padding: 6, borderRadius: 10 }}>
-              <Ionicons name="compass" size={32} color={'#2C2829'} />
+              style={{ marginLeft: 20, backgroundColor: '#fff', padding: 6, borderRadius: 10 }}>
+              <Ionicons name="chevron-back" size={32} color={'#2C2829'} />
             </TouchableOpacity>
           ),
         }}
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#2C2829',
   },
 });
 

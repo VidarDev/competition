@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Stack, router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { current } from '@react-native-community/cli-tools/build/releaseChecker';
 
 const HomeScreen = () => {
   const { t } = useTranslation();
@@ -11,14 +12,26 @@ const HomeScreen = () => {
     <>
       <Stack.Screen
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: 'Premium',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()} style={{}}>
+              <View
+                style={{
+                  backgroundColor: '#fff',
+                  padding: 6,
+                  borderRadius: 10,
+                }}>
+                <Ionicons name="chevron-back" size={32} color={'#2C2829'} />
+              </View>
+            </TouchableOpacity>
+          ),
         }}
       />
       <View style={[styles.container]}>
-        <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => router.navigate({ pathname: '(tabs)/home' })}>
-          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{t('Home')}</Text>
+        <TouchableOpacity style={[styles.button]} onPress={() => router.back()}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Go back</Text>
         </TouchableOpacity>
       </View>
     </>

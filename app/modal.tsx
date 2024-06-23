@@ -19,12 +19,12 @@ const Modal = () => {
               onPress={() => router.back()}
               style={{
                 marginTop: 16,
-                marginLeft: Platform.OS === 'ios' ? 0 : 16,
+                marginLeft: Platform.OS === 'ios' ? 0 : 0,
                 backgroundColor: '#fff',
                 padding: 6,
                 borderRadius: 10,
               }}>
-              <Ionicons name="compass" size={32} color={'#2C2829'} />
+              <Ionicons name="close" size={32} color={'#2C2829'} />
             </TouchableOpacity>
           ),
         }}

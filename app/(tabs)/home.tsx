@@ -16,73 +16,68 @@ const HomeScreen = () => {
   const { lang, setLang } = useLang();
 
   return (
-    <View style={[styles.container]}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('Welcome')}</Text>
+    <>
+      <View style={[styles.page]}>
+        <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 16 }}>{t('Welcome')}</Text>
 
-      <Text>User: {user}</Text>
-      <Text>Is logged in: {isLoggedIn ? 'Yes' : 'No'}</Text>
-      <Text>Theme: {theme}</Text>
-      <Text>Lang: {lang}</Text>
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#fff',
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-          borderRadius: 10,
-          marginTop: 20,
-        }}
-        onPress={() => {
-          i18n.changeLanguage('en');
-          setLang('en');
-        }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#fff',
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-          borderRadius: 10,
-          marginTop: 20,
-        }}
-        onPress={() => {
-          i18n.changeLanguage('fr');
-          setLang('fr');
-        }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#fff',
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-          borderRadius: 10,
-          marginTop: 20,
-        }}
-        onPress={() => router.navigate('modal')}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#fff',
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-          borderRadius: 10,
-          marginTop: 20,
-        }}
-        onPress={() => router.navigate({ pathname: 'profil' })}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2829' }}>{t('Go Home')}</Text>
-      </TouchableOpacity>
-    </View>
+        <Text>
+          {t('User')}: {user}
+        </Text>
+        <Text>
+          {t('User logged in ?')}: {isLoggedIn ? t('Yes') : t('No')}
+        </Text>
+        <Text>
+          {t('Theme')}: {theme}
+        </Text>
+        <Text>
+          {t('Language')}: {lang}
+        </Text>
+        <View style={[{ flexDirection: 'row', gap: 8 }]}>
+          <TouchableOpacity
+            style={[styles.button]}
+            onPress={() => {
+              i18n.changeLanguage('en');
+              setLang('en');
+            }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#2C2829' }}>EN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button]}
+            onPress={() => {
+              i18n.changeLanguage('fr');
+              setLang('fr');
+            }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>FR</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={[styles.button]} onPress={() => router.navigate('modal')}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Modal</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#FF6819' }]}
+          onPress={() => router.navigate({ pathname: '404' })}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Error</Text>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#2C2829',
+  },
+  button: {
+    backgroundColor: '#fff',
+    color: '#2C2829',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 10,
+    marginTop: 16,
   },
 });
 
