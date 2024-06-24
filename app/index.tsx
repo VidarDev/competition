@@ -10,8 +10,11 @@ import {
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
 import { Stack, router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTheme } from '@/src/context/ThemeContext';
 
 const App = () => {
+  const { themeColor } = useTheme();
+
   const { t } = useTranslation();
 
   const ring1padding = useSharedValue(0);
@@ -43,7 +46,7 @@ const App = () => {
 
       <View style={[styles.page]}>
         <LinearGradient
-          colors={['#FF6819', '#FFF491']}
+          colors={[themeColor.primary, themeColor.secondary]}
           start={{ x: 0.0, y: 1 }}
           end={{ x: 1.25, y: -0.25 }}
           locations={[0.13, 0.9]}
@@ -71,7 +74,6 @@ const App = () => {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
   },

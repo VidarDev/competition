@@ -5,8 +5,11 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { StatusBar } from 'expo-status-bar';
 import { router, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '@/src/context/ThemeContext';
 
 const Modal = () => {
+  const { themeColor } = useTheme();
+
   return (
     <>
       <Stack.Screen
@@ -20,7 +23,7 @@ const Modal = () => {
               style={{
                 marginTop: 16,
                 marginLeft: Platform.OS === 'ios' ? 0 : 0,
-                backgroundColor: '#fff',
+                backgroundColor: themeColor.background,
                 padding: 6,
                 borderRadius: 10,
               }}>
@@ -31,7 +34,7 @@ const Modal = () => {
       />
       <View style={[styles.page]}>
         <LinearGradient
-          colors={['#FF6819', '#FFF491']}
+          colors={[themeColor.primary, themeColor.secondary]}
           start={{ x: 0.0, y: 1 }}
           end={{ x: 1.25, y: -0.25 }}
           locations={[0.13, 0.9]}
@@ -57,7 +60,6 @@ const Modal = () => {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
   },

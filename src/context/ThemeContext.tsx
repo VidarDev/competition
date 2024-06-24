@@ -1,39 +1,64 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Themes } from '@/constants/Themes';
 
 interface ThemeContextProps {
   theme: string;
+  colorScheme: string;
   setTheme: (theme: string) => void;
+  setColorScheme: (colorScheme: string) => void;
+  themeColor: any;
 }
 
 const ThemeDefault: string = 'default';
+const ColorSchemeDefault: string = 'light';
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{
   children: ReactNode;
-  colorScheme: string | null | undefined;
-}> = ({ children, colorScheme }) => {
-  const [theme, setThemeState] = useState<string>(ThemeDefault + '.' + colorScheme);
+  colorSchemeProvider: string | null | undefined;
+}> = ({ children, colorSchemeProvider }) => {
+  const [theme, setThemeState] = useState<string>(ThemeDefault);
+  const [colorScheme, setColorSchemeState] = useState<string>(
+    colorSchemeProvider || ColorSchemeDefault,
+  );
   useEffect(() => {
     const loadTheme = async () => {
       const storedTheme = await AsyncStorage.getItem('theme');
+      const storedColorScheme = await AsyncStorage.getItem('colorScheme');
       if (storedTheme) {
-        setThemeState(storedTheme + '.' + colorScheme);
+        setThemeState(storedTheme);
       } else {
         setTheme(ThemeDefault);
-        setThemeState(ThemeDefault + '.' + colorScheme);
+      }
+      if (storedColorScheme) {
+        setColorSchemeState(storedColorScheme);
+      } else {
+        setColorScheme(ColorSchemeDefault);
       }
     };
     loadTheme();
   }, []);
 
   const setTheme = async (newTheme: string) => {
-    setThemeState(newTheme + '.' + colorScheme);
+    setThemeState(newTheme);
     await AsyncStorage.setItem('theme', newTheme);
   };
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  const setColorScheme = async (newColorScheme: string) => {
+    setColorSchemeState(newColorScheme);
+    await AsyncStorage.setItem('colorScheme', newColorScheme);
+  };
+
+  // @ts-ignore
+  const themeColor = Themes[theme][colorScheme];
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme, colorScheme, setColorScheme, themeColor }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export const useTheme = () => {

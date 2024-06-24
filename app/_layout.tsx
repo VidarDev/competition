@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import '@/src/i18n'; // importer la configuration i18n
@@ -11,8 +11,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { UserProvider } from '@/src/context/UserContext';
 import { ThemeProvider } from '@/src/context/ThemeContext';
 import { LangProvider } from '@/src/context/LangContext';
-import modal from '@/app/modal';
-import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -20,6 +19,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const { i18n } = useTranslation();
 
+  AsyncStorage.clear();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -37,7 +37,7 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
-      <ThemeProvider colorScheme={colorScheme}>
+      <ThemeProvider colorSchemeProvider={colorScheme}>
         <LangProvider>
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />

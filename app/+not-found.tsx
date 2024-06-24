@@ -9,8 +9,11 @@ import {
 } from 'react-native-responsive-screen';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+import { useTheme } from '@/src/context/ThemeContext';
 
 export default function NotFoundScreen() {
+  const { themeColor } = useTheme();
+
   const { t } = useTranslation();
 
   const ring1padding = useSharedValue(0);
@@ -85,7 +88,6 @@ export default function NotFoundScreen() {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#FFEAD9',
     alignItems: 'center',
     justifyContent: 'center',
   },
