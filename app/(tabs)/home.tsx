@@ -15,8 +15,6 @@ const HomeScreen = () => {
   const { user, isLoggedIn } = useUser();
   const { themeColor, theme, setTheme, colorScheme, setColorScheme } = useTheme();
   const { lang, setLang } = useLang();
-  const [newColorScheme, setNewColorScheme] = useState(colorScheme);
-  const [newTheme, setNewTheme] = useState(theme);
 
   return (
     <>
